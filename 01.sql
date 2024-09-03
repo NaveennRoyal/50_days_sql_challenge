@@ -68,8 +68,13 @@ WHERE drn = 2
 -- Question: Get the details of the employee with the second-highest salary from each department
 
 
+with a as (select *,
+	dense_rank() over(order by salary desc) as rnk
+	from employees)
+select * from a
+where rnk=2
 
-
+      
 
 
 
